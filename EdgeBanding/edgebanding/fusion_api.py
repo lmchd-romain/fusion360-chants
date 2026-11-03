@@ -75,6 +75,18 @@ class InfoCorps:
                 planes.append((f, chants.FacePlane(f.area * MM2, (n.x, n.y, n.z))))
         self.axe = chants.axe_epaisseur([p for _, p in planes])
         pts = [_mm(v.geometry) for v in corps.vertices]
+        for e in corps.edges:  # arêtes courbes (plateau rond…) : quelques points le long de l'arête
+            if isinstance(e.geometry, adsk.core.Line3D):
+                continue
+            try:
+                ev = e.evaluator
+                ok, a, b = ev.getParameterExtents()
+                if ok:
+                    ok, sur = ev.getPointsAtParameters([a + (b - a) * i / 16 for i in range(17)])
+                    if ok:
+                        pts += [_mm(p) for p in sur]
+            except Exception:  # noqa: BLE001
+                pass
         if not pts:
             bb = corps.boundingBox
             pts = [_mm(bb.minPoint), _mm(bb.maxPoint)]

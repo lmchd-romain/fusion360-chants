@@ -94,7 +94,7 @@ def test_dialogue_pinceau_se_construit(addin):
     bouton = cmd.commandInputs.addBoolValueInput.call_args
     assert bouton.args[0] == "tous" and bouton.args[2] is False
     assert Path(bouton.args[3], "16x16.png").exists()
-    assert len(pinceau.handlers_dialogue) == 6
+    assert len(pinceau.handlers_dialogue) == 7
     mod.stop({})
 
 

@@ -195,7 +195,7 @@ def jouer() -> dict:
                 if design.appearances.item(i).name.startswith(fusion_api.PREFIXE_APPARENCE)]
         dessus = max(P["cote_g"].faces, key=lambda x: x.area)
         return {"ok": ap.name.startswith(fusion_api.PREFIXE_APPARENCE) and rvb == attendu and len(apps) == 2
-                and not dessus.appearance.name.startswith(fusion_api.PREFIXE_APPARENCE),
+                and (dessus.appearance is None or not dessus.appearance.name.startswith(fusion_api.PREFIXE_APPARENCE)),
                 "apparence": ap.name, "rvb": rvb, "apparences_creees": apps, "propriete": prop.id if prop else None}
 
     def p3_composant_deux_fois():

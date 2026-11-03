@@ -210,16 +210,27 @@ def _creer_dialogue(cmd):
         _etat["disparus"] = fusion_api.chants_disparus(design)
     _remplir_references(inputs)
     _remplir_edition()
-    if _etat["marques"]:
-        _reconstruire_selection()
     _resume()
 
-    for evenement, classe in ((cmd.inputChanged, _QuandChange), (cmd.validateInputs, _QuandValide),
+    for evenement, classe in ((cmd.activate, _QuandActive), (cmd.inputChanged, _QuandChange),
+                              (cmd.validateInputs, _QuandValide),
                               (cmd.preSelect, _QuandPreSelect), (cmd.executePreview, _QuandApercu),
                               (cmd.execute, _QuandExecute), (cmd.destroy, _QuandDetruit)):
         h = classe()
         evenement.add(h)
         handlers_dialogue.append(h)
+
+
+class _QuandActive(adsk.core.CommandEventHandler):
+    """Chants déjà plaqués remis dans la sélection une fois le dialogue affiché (un clic dessus les retire)."""
+
+    def __init__(self):
+        super().__init__()
+
+    def notify(self, args):
+        if _etat.get("marques") and not _etat.get("active"):
+            _etat["active"] = True
+            ctx.garde(_reconstruire_selection)
 
 
 class _QuandPreSelect(adsk.core.SelectionEventHandler):

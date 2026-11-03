@@ -80,6 +80,7 @@ def panneau(adsk, L, W, E, nom="Côté", ox=0.0):
     corps.name, corps.isSolid, corps.assemblyContext, corps.entityToken = nom, True, None, f"jeton-{nom}"
     corps.appearance = Apparence("Chêne")
     corps.vertices = [Arete(Pt(x, y, z)) for x in (x0, x1) for y in (0, y1) for z in (0, z1)]
+    corps.edges = []
     corps.boundingBox = Boite(Pt(x0, 0, 0), Pt(x1, y1, z1))
     faces = []
     defs = [  # normale, aire (cm²), point, arêtes
