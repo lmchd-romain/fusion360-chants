@@ -1,0 +1,6 @@
+__pycache__/
+.pytest_cache/
+*.log
+.vscode/
+.venv/
+essai/resultats/*.json
