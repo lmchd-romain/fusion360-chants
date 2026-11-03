@@ -1,0 +1,9 @@
+[project]
+name = "edgebanding"
+version = "0.1.0"
+requires-python = ">=3.13"
+
+[tool.pytest.ini_options]
+pythonpath = ["EdgeBanding", "tests"]
+testpaths = ["tests"]
+# tests/ sur le chemin pour faux_adsk

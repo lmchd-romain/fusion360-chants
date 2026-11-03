@@ -2,5 +2,9 @@ __pycache__/
 .pytest_cache/
 *.log
 .vscode/
-.venv/
+.venv*/
+derniers_reglages.json
 essai/resultats/*.json
+essai/resultats/*.csv
+essai/resultats/*.html
+node_modules/

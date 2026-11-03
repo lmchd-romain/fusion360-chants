@@ -1,0 +1,13 @@
+{
+	"autodeskProduct": "Fusion360",
+	"type": "addin",
+	"id": "325d82f1-5da8-4e5e-922f-ddc66984547b",
+	"author": "lmchd",
+	"description": {
+		"": "Edge Banding: paint panel edges with a banding reference, see them in colour, export the edge banding list."
+	},
+	"version": "0.1.0",
+	"runOnStartup": true,
+	"supportedOS": "windows|mac",
+	"editEnabled": true
+}
